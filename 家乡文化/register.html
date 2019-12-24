@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册页面</title>
+		<link rel="stylesheet" href="case03.css">
+	
+		
+	</head>
+	<body>
+	<div class="box">
+      <div class="box-head">填写注册信息</div>
+      <div class="box-body">
+		<form action="">
+			<table>
+				<tr>
+					<th>用户名：</th>
+					<td>
+					<input type="text" id="username" placeholder="长度4~12，英文大小写字母" onblur="isValidName()"/>
+					</td>
+					<td><div id="name_msg" class="success"></div></td>
+				</tr>
+				<tr>
+					<th>密码：</th>
+					<td>
+						<input type="password" id="pwd" placeholder="长度6~12,大小写字母、数字或者下划线" onblur="isValidPwd()"/>
+					</td>
+					<td>
+						<div id="pwd_msg" class="success"></div>
+					</td>
+				</tr>
+				<tr>
+					<th>确认密码:</th>
+					<td><input type="password" id="repwd" placeholder="请再次确认输入密码" onblur="isEquals()"/></td>
+					<td><div id="pwd2_msg" class="success"></div></td>
+				</tr>
+				<tr>
+					<th>手机号码：</th>
+					<td><input type="text" id="tel" placeholder="13、14、15、17、18、19开头的11位手机号码" onblur="isValidPhone()"/></td>
+					<td><div class="success" id="tel_msg"></div></td>
+				</tr>
+				<tr>
+					<th>电子邮箱：</th>
+					<td>
+						<input type="text" id="email" placeholder="用户名@域名(域名后缀至少2个字符)" onblur="isValidEmail()"/>
+					</td>
+					<td><div  id="email_msg"></div></td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<input type="submit" value="注册"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		</div>
+		</div>
+			<script>
+		
+			//根据id获取HTML中的元素
+			function $(id){
+				return document.getElementById(id);
+			}
+		    //验证输入的用户名是否有效
+			function isValidName(){
+				var name=$("username");
+				var name_msg=$("name_msg");
+				var  reg=/^[a-zA-Z]{4,12}$/;
+				name_msg.style.fontSize="24dp";
+				name_msg.style.color="#ff0000";
+				if(name.value.trim().length==0){
+					name_msg.innerHTML="用户名不能为空。";
+				}
+				else if(reg.exec(name.value)!=null){
+					name_msg.innerHTML="√";
+				}
+				else {
+					name_msg.innerHTML="用户名输入不正确，"+name.placeholder;
+				}
+			}
+			//验证输入的密码是否是6-12位的字母、数字、下划线
+			function isValidPwd(){
+				var pwd=$("pwd");
+				var pwd_msg=$("pwd_msg");
+				var reg=/^\w{6,12}$/;
+				pwd_msg.style.color="#ff0000";
+				if(pwd.value.trim().length==0){
+					pwd_msg.innerHTML="密码不能为空！";
+				}
+				else if(reg.exec(pwd.value)!=null){
+					pwd_msg.innerHTML="√";
+				}
+				else{
+					pwd_msg.innerHTML="密码输入不正确，"+pwd.placeholder;
+				}
+				
+			}
+			//验证两次密码是否一致
+			function isEquals(){
+				var pwd=$("pwd");
+				var repwd=$("repwd");
+				var pwd2_msg=$("pwd2_msg");
+				pwd2_msg.style.color="#ff0000";
+				if(pwd.value==repwd.value){
+					pwd2_msg.innerHTML="√";
+				}
+				else{
+					pwd2_msg.innerHTML="两次密码不一致。";
+				}
+			
+			}
+			//验证手机号码是否合理
+			function isValidPhone(){
+				var tel=$("tel");
+				var tel_msg=$("tel_msg");
+				var reg=/^1[345789]\d{9}$/;
+				tel_msg.style.color="#ff0000";
+				if(tel.value.trim().length==0){
+					tel_msg.innerHTML="电话号码不能为空！";
+				}
+				else if(reg.exec(tel.value)){
+					tel_msg.innerHTML="√";
+				}
+				else{
+					tel_msg.innerHTML="电话号码不正确，"+tel.placeholder;
+				}
+			}
+			//验证邮箱是否合理
+			function isValidEmail(){
+				var email=$("email");
+				var email_msg=$("email_msg");
+				var reg=/^(\w+(\_|\-|\.)*)+@(\w+(\-)?)+(\.\w{2,})+$/;
+				email_msg.style.color="#ff0000";
+				if(email.value.trim().length==0){
+					email_msg.innerHTML="邮箱不能为空。";
+				}
+				else if(reg.exec(email.value)!=null){
+					email_msg.innerHTML="√";
+				}
+				else{
+					email_msg.innerHTML="邮箱输入不正确，"+email.placeholder;
+				}
+				
+			}
+			</script>
+		
+	</body>
+</html>
